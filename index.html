@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <!-- meta tags / seo -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Inicio - Pladur</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+<body class="bg-light">
+       
+    <!-- contenido principal -->
+    <main class="container">
+
+        <div class="row">
+        
+            <div class="col-12">
+                <h1 class="text-center my-5">Pladur</h1>
+            </div>
+
+            <div class="col-sm-6 mx-auto d-flex mb-3 shadow-sm bg-white p-3 flex-wrap justify-content-center" id="contenido-agregar">
+                <p class="w-100 text-center">Al finalizar el listado, lo puedes exportar haciendo click en uno de los siguientes botones:</p>
+                <button type="button" class="btn btn-sm btn-danger mr-2"><i class="fas fa-file-pdf"></i> Guardar PDF</button>
+                <button type="button" class="btn btn-sm btn-success"><i class="fas fa-envelope"></i> Enviar por EMAIL</button>
+            </div>
+            <div class="col-sm-6 mx-auto d-flex mb-3 shadow-sm bg-white p-3 flex-wrap justify-content-center" id="contenido-agregar">
+                <p class="w-100 text-center">Selecciona una opción para agregar un nuevo elemento a la lista:</p>
+                <form class="col-6" id="formulario">
+                    <select name="opcion" class="form-control mb-2" required>
+                        <option></option>
+                        <option value="techo">Techo</option>
+                        <option value="tabique1">Tabique m. lineal</option>
+                        <option value="tabique2">Tabique m. cuadrado</option>
+                    </select>
+                    <button type="submit" class="btn btn-sm btn-primary w-100"><i class="fas fa-plus"></i> Añadir</button>
+                </form>
+            </div>
+
+            <div class="col-12 d-flex justify-content-between mb-3 shadow-sm bg-white p-3">
+                <input type="date" name="fecha" class="form-control col-5">
+                <input type="text" name="obra" class="form-control col-5" placeholder="Obra">
+            </div>
+
+            <div class="col-12 mb-3 px-0" id="lista">
+                
+                <section class="bg-white col-12 shadow-sm p-2 border-bottom">
+                    <h3 class="text-center">Listado con <span id="cantidad"><strong>0</strong> elementos</span>:</h3>
+                </section>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- javascript -->
+    <script src="assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

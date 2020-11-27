@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <!-- meta tags / seo -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Inicio - Pladur</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+<body class="bg-light">
+       
+    <!-- contenido principal -->
+    <main class="container">
+
+        <div class="row">
+        
+            <div class="col-12">
+                <h1 class="text-center my-5">Pladur</h1>
+            </div>
+
+            <div class="col-12 d-flex justify-content-between mb-3 shadow-sm bg-white p-3">
+                <input type="date" name="fecha" class="form-control col-3">
+                <input type="text" name="obra" class="form-control col-3" placeholder="Obra">
+            </div>
+
+            <div class="col-12">
+                <form method="post" action="#" id="formulario">
+                    <table class="table table-light shadow-sm table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Opción</th>
+                                <th>Altura <small>(m)</small></th>
+                                <th>Anchura <small>(m)</small></th>
+                                <th>Área total <small>(m<sup>2</sup>)</small></th>
+                                <th>Coste / m<sup>2</sup> <small>(€)</small></th>
+                                <th>Coste / m lineal <small>(€)</small></th>
+                                <th>Coste total <small>(€)</small></th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody id="filas">
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <select class="form-control form-control-sm" name="opcion" required>
+                                        <option></option>
+                                        <option>Techo</option>
+                                        <option>Tabique</option>
+                                        <option>Mocheta</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" name="altura" class="form-control form-control-sm" required>
+                                </td>
+                                <td>
+                                    <input type="number" name="anchura" class="form-control form-control-sm" required>
+                                </td>
+                                <td>
+                                    <input type="number" name="area" readonly class="form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <input type="number" name="coste" class="form-control form-control-sm" required>
+                                </td>
+                                <td>
+                                    <input type="number" name="coste_lineal" class="form-control form-control-sm" required>
+                                </td>
+                                <td>
+                                    <input type="number" name="coste_total" readonly class="form-control form-control-sm">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">
+                                    <button type="submit" class="btn btn-sm btn-primary w-100"><i class="fas fa-plus"></i> Añadir</button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- javascript -->
+    <script src="assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>
