@@ -29,7 +29,7 @@ function generaElemento(form) {
         fila.classList.add("bg-white", "col-12", "shadow-sm", "p-1", "border-bottom", "bg-hover");
 
     let filaTitulo = document.createElement("h5");
-        filaTitulo.classList.add("text-uppercase");
+        filaTitulo.classList.add("text-uppercase", "mr-auto", "mb-0");
         filaTitulo.appendChild(document.createTextNode(form.opcion.options[form.opcion.selectedIndex].text));
         filaTitulo.classList.add("mr-2")
 
@@ -45,7 +45,7 @@ function generaElemento(form) {
         };
 
     let filaCabecera = document.createElement("div");
-        filaCabecera.classList.add("d-flex", "justify-content-center");
+        filaCabecera.classList.add("d-flex", "align-items-center", "border-bottom", "px-2");
         filaCabecera.appendChild(filaTitulo);
         filaCabecera.appendChild(filaModificar);
         filaCabecera.appendChild(generaBotonEliminarFila(fila));
@@ -64,7 +64,7 @@ function generaElemento(form) {
 function generaFormulario(opcion) {
 
     let fieldset = document.createElement("fieldset");
-        fieldset.classList.add("d-flex", "justify-content-around");
+        fieldset.classList.add("d-flex");
 
     switch (opcion) {
 
@@ -72,7 +72,7 @@ function generaFormulario(opcion) {
         case "techo":
 
             let techoGrupo1 = document.createElement("div");
-                techoGrupo1.classList.add("form-group", "col-5");
+                techoGrupo1.classList.add("form-group", "mb-0");
                 fieldset.appendChild(techoGrupo1);
 
             let techoLongitud = document.createElement("input");
@@ -101,10 +101,6 @@ function generaFormulario(opcion) {
             techoLongitud.required = true;
             techoAnchura.placeholder = "Escribe la anchura";
             techoLongitud.placeholder = "Escribe la longitud";
-
-            let techoGrupo2 = document.createElement("div");
-                techoGrupo2.classList.add("form-group");
-                fieldset.appendChild(techoGrupo2);
                 
             let techoCoste = document.createElement("input");
             let techoPorcentaje = document.createElement("input");
@@ -113,13 +109,13 @@ function generaFormulario(opcion) {
                 techoCosteLabel.classList.add("mx-2");
                 techoCosteLabel.appendChild(document.createTextNode("Coste: "));
                 techoCosteLabel.appendChild(techoCoste);
-                techoGrupo2.appendChild(techoCosteLabel);
+                techoGrupo1.appendChild(techoCosteLabel);
 
             let techoPorcentajeLabel = document.createElement("label");
                 techoPorcentajeLabel.classList.add("mx-2");
                 techoPorcentajeLabel.appendChild(document.createTextNode("Completado: "));
                 techoPorcentajeLabel.appendChild(techoPorcentaje);
-                techoGrupo2.appendChild(techoPorcentajeLabel);
+                techoGrupo1.appendChild(techoPorcentajeLabel);
 
                 techoCoste.classList.add("form-control", "form-control-sm");
                 techoPorcentaje.classList.add("form-control-range");
@@ -131,29 +127,38 @@ function generaFormulario(opcion) {
                 techoCoste.required = true;
                 techoCoste.placeholder = "Introduce el precio";
 
-            let techoGrupo3 = document.createElement("div");
-                techoGrupo3.classList.add("form-group");
-                fieldset.appendChild(techoGrupo3);
+            let techoTotalAreaLabel = document.createElement("label");
+                techoTotalAreaLabel.classList.add("mx-2");
+                techoTotalAreaLabel.appendChild(document.createTextNode("Área: "));
+                techoGrupo1.appendChild(techoTotalAreaLabel);
+            let techoTotalCosteLabel = document.createElement("label");
+                techoTotalCosteLabel.classList.add("mx-2");
+                techoTotalCosteLabel.appendChild(document.createTextNode("Coste Total: "));
+                techoGrupo1.appendChild(techoTotalCosteLabel);
 
             let techoTotalArea = document.createElement("p");
-                techoGrupo3.appendChild(techoTotalArea);
+                techoTotalArea.classList.add("mb-0", "font-weight-bold");
+                techoTotalAreaLabel.appendChild(techoTotalArea);
+                techoTotalArea.innerHTML = "0 m<sup>2</sup>";
             let techoTotalCoste = document.createElement("p");
-                techoGrupo3.appendChild(techoTotalCoste);
+                techoTotalCoste.classList.add("mb-0", "font-weight-bold");
+                techoTotalCosteLabel.appendChild(techoTotalCoste);
+                techoTotalCoste.innerHTML = "0 €";
 
             techoAnchura.onchange = () => {
                 let area = calculaArea(techoLongitud.value, techoAnchura.value);
-                techoTotalArea.innerHTML = "Área = <strong>" + area + "</strong>";
-                techoTotalCoste.innerHTML = "Coste Total = <strong>" + calculaCosteTotal(techoCoste.value, area) + " €</strong>";
+                techoTotalArea.innerHTML = area + " m<sup>2</sup>";
+                techoTotalCoste.innerHTML = calculaCosteTotal(techoCoste.value, area) + " €";
             };
             techoLongitud.onchange = () => {
                 let area = calculaArea(techoLongitud.value, techoAnchura.value);
-                techoTotalArea.innerHTML = "Área = <strong>" + area + "</strong>";
-                techoTotalCoste.innerHTML = "Coste Total = <strong>" + calculaCosteTotal(techoCoste.value, area) + " €</strong>";
+                techoTotalArea.innerHTML = area + " m<sup>2</sup>";
+                techoTotalCoste.innerHTML = calculaCosteTotal(techoCoste.value, area) + " €";
             };
             techoCoste.onchange = () => {
                 let area = calculaArea(techoLongitud.value, techoAnchura.value);
-                techoTotalArea.innerHTML = "Área = <strong>" + area + "</strong>";
-                techoTotalCoste.innerHTML = "Coste Total = <strong>" + calculaCosteTotal(techoCoste.value, area) + " €</strong>";
+                techoTotalArea.innerHTML = area + " m<sup>2</sup>";
+                techoTotalCoste.innerHTML = calculaCosteTotal(techoCoste.value, area) + " €";
             };
 
             return fieldset;
@@ -163,7 +168,7 @@ function generaFormulario(opcion) {
         case "tabique1":
 
             let tabique1Grupo1 = document.createElement("div");
-                tabique1Grupo1.classList.add("form-group", "col-5");
+                tabique1Grupo1.classList.add("form-group", "mb-0");
                 fieldset.appendChild(tabique1Grupo1);
 
             let tabique1Longitud = document.createElement("input");
@@ -179,10 +184,6 @@ function generaFormulario(opcion) {
             tabique1Longitud.step = "any";
             tabique1Longitud.required = true;
             tabique1Longitud.placeholder = "Escribe la longitud";
-
-            let tabique1Grupo2 = document.createElement("div");
-                tabique1Grupo2.classList.add("form-group");
-                fieldset.appendChild(tabique1Grupo2);
                 
             let tabique1Coste = document.createElement("input");
             let tabique1Porcentaje = document.createElement("input");
@@ -191,36 +192,39 @@ function generaFormulario(opcion) {
                 costeLabel.classList.add("mx-2");
                 costeLabel.appendChild(document.createTextNode("Coste: "));
                 costeLabel.appendChild(tabique1Coste);
-                tabique1Grupo2.appendChild(costeLabel);
+                tabique1Grupo1.appendChild(costeLabel);
 
             let porcentajeLabel = document.createElement("label");
                 porcentajeLabel.classList.add("mx-2");
                 porcentajeLabel.appendChild(document.createTextNode("Completado: "));
                 porcentajeLabel.appendChild(tabique1Porcentaje);
-                tabique1Grupo2.appendChild(porcentajeLabel);
+                tabique1Grupo1.appendChild(porcentajeLabel);
 
-                tabique1Coste.classList.add("form-control", "form-control-sm");
-                tabique1Porcentaje.classList.add("form-control-range");
-                tabique1Coste.name = "coste";
-                tabique1Porcentaje.name = "porcentaje";
-                tabique1Coste.type = "number";
-                tabique1Porcentaje.type = "range";
-                tabique1Coste.step = "any";
-                tabique1Coste.required = true;
-                tabique1Coste.placeholder = "Introduce el precio";
+            tabique1Coste.classList.add("form-control", "form-control-sm");
+            tabique1Porcentaje.classList.add("form-control-range");
+            tabique1Coste.name = "coste";
+            tabique1Porcentaje.name = "porcentaje";
+            tabique1Coste.type = "number";
+            tabique1Porcentaje.type = "range";
+            tabique1Coste.step = "any";
+            tabique1Coste.required = true;
+            tabique1Coste.placeholder = "Introduce el precio";
 
-            let tabique1Grupo3 = document.createElement("div");
-                tabique1Grupo3.classList.add("form-group");
-                fieldset.appendChild(tabique1Grupo3);
+            let tabique1TotalCosteLabel = document.createElement("label");
+                tabique1TotalCosteLabel.classList.add("mx-2");
+                tabique1TotalCosteLabel.appendChild(document.createTextNode("Coste Total: "));
+                tabique1Grupo1.appendChild(tabique1TotalCosteLabel);
 
             let tabique1TotalCoste = document.createElement("p");
-                tabique1Grupo3.appendChild(tabique1TotalCoste);
+                tabique1TotalCoste.classList.add("mb-0", "font-weight-bold");
+                tabique1TotalCosteLabel.appendChild(tabique1TotalCoste);
+                tabique1TotalCoste.innerHTML = "0 €";
 
             tabique1Longitud.onchange = () => {
-                tabique1TotalCoste.innerHTML = "Coste Total = <strong>" + calculaCosteTotal(tabique1Coste.value, tabique1Longitud.value) + " €</strong>";
+                tabique1TotalCoste.innerHTML = calculaCosteTotal(tabique1Coste.value, tabique1Longitud.value) + " €";
             };
             tabique1Coste.onchange = () => {
-                tabique1TotalCoste.innerHTML = "Coste Total = <strong>" + calculaCosteTotal(tabique1Coste.value, tabique1Longitud.value) + " €</strong>";
+                tabique1TotalCoste.innerHTML = calculaCosteTotal(tabique1Coste.value, tabique1Longitud.value) + " €";
             };
 
             return fieldset;
@@ -230,7 +234,7 @@ function generaFormulario(opcion) {
         case "tabique2":
             
             let tabique2Grupo1 = document.createElement("div");
-            tabique2Grupo1.classList.add("form-group", "col-5");
+            tabique2Grupo1.classList.add("form-group", "mb-0");
             fieldset.appendChild(tabique2Grupo1);
 
             let tabique2Longitud = document.createElement("input");
@@ -259,10 +263,6 @@ function generaFormulario(opcion) {
             tabique2Longitud.required = true;
             tabique2Anchura.placeholder = "Escribe la anchura";
             tabique2Longitud.placeholder = "Escribe la altura";
-
-            let tabique2Grupo2 = document.createElement("div");
-                tabique2Grupo2.classList.add("form-group");
-                fieldset.appendChild(tabique2Grupo2);
                 
             let tabique2Coste = document.createElement("input");
             let tabique2Porcentaje = document.createElement("input");
@@ -271,13 +271,13 @@ function generaFormulario(opcion) {
                 tabique2CosteLabel.classList.add("mx-2");
                 tabique2CosteLabel.appendChild(document.createTextNode("Coste: "));
                 tabique2CosteLabel.appendChild(tabique2Coste);
-                tabique2Grupo2.appendChild(tabique2CosteLabel);
+                tabique2Grupo1.appendChild(tabique2CosteLabel);
 
             let tabique2PorcentajeLabel = document.createElement("label");
                 tabique2PorcentajeLabel.classList.add("mx-2");
                 tabique2PorcentajeLabel.appendChild(document.createTextNode("Completado: "));
                 tabique2PorcentajeLabel.appendChild(tabique2Porcentaje);
-                tabique2Grupo2.appendChild(tabique2PorcentajeLabel);
+                tabique2Grupo1.appendChild(tabique2PorcentajeLabel);
 
                 tabique2Coste.classList.add("form-control", "form-control-sm");
                 tabique2Porcentaje.classList.add("form-control-range");
@@ -288,30 +288,39 @@ function generaFormulario(opcion) {
                 tabique2Coste.step = "any";
                 tabique2Coste.required = true;
                 tabique2Coste.placeholder = "Introduce el precio";
-
-            let tabique2Grupo3 = document.createElement("div");
-                tabique2Grupo3.classList.add("form-group");
-                fieldset.appendChild(tabique2Grupo3);
+                                
+            let tabique2TotalAreaLabel = document.createElement("label");
+                tabique2TotalAreaLabel.classList.add("mx-2");
+                tabique2TotalAreaLabel.appendChild(document.createTextNode("Área: "));
+                tabique2Grupo1.appendChild(tabique2TotalAreaLabel);
+            let tabique2TotalCosteLabel = document.createElement("label");
+                tabique2TotalCosteLabel.classList.add("mx-2");
+                tabique2TotalCosteLabel.appendChild(document.createTextNode("Coste Total: "));
+                tabique2Grupo1.appendChild(tabique2TotalCosteLabel);
 
             let tabique2TotalArea = document.createElement("p");
-                tabique2Grupo3.appendChild(tabique2TotalArea);
+                tabique2TotalArea.classList.add("mb-0", "font-weight-bold");
+                tabique2TotalAreaLabel.appendChild(tabique2TotalArea);
+                tabique2TotalArea.innerHTML = "0 m<sup>2</sup>";
             let tabique2TotalCoste = document.createElement("p");
-                tabique2Grupo3.appendChild(tabique2TotalCoste);
+                tabique2TotalCoste.classList.add("mb-0", "font-weight-bold");
+                tabique2TotalCosteLabel.appendChild(tabique2TotalCoste);
+                tabique2TotalCoste.innerHTML = "0 €";
 
             tabique2Anchura.onchange = () => {
                 let area = calculaArea(tabique2Longitud.value, tabique2Anchura.value);
-                tabique2TotalArea.innerHTML = "Área = <strong>" + area + "</strong>";
-                tabique2TotalCoste.innerHTML = "Coste Total = <strong>" + calculaCosteTotal(tabique2Coste.value, area) + " €</strong>";
+                tabique2TotalArea.innerHTML = area + " m<sup>2</sup>";
+                tabique2TotalCoste.innerHTML = calculaCosteTotal(tabique2Coste.value, area) + " €";
             };
             tabique2Longitud.onchange = () => {
                 let area = calculaArea(tabique2Longitud.value, tabique2Anchura.value);
-                tabique2TotalArea.innerHTML = "Área = <strong>" + area + "</strong>";
-                tabique2TotalCoste.innerHTML = "Coste Total = <strong>" + calculaCosteTotal(tabique2Coste.value, area) + " €</strong>";
+                tabique2TotalArea.innerHTML = area + " m<sup>2</sup>";
+                tabique2TotalCoste.innerHTML = calculaCosteTotal(tabique2Coste.value, area) + " €";
             };
             tabique2Coste.onchange = () => {
                 let area = calculaArea(tabique2Longitud.value, tabique2Anchura.value);
-                tabique2TotalArea.innerHTML = "Área = <strong>" + area + "</strong>";
-                tabique2TotalCoste.innerHTML = "Coste Total = <strong>" + calculaCosteTotal(tabique2Coste.value, area) + " €</strong>";
+                tabique2TotalArea.innerHTML = area + " m<sup>2</sup>";
+                tabique2TotalCoste.innerHTML = calculaCosteTotal(tabique2Coste.value, area) + " €";
             };
             
             return fieldset;
